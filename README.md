@@ -12,3 +12,14 @@ const auto _dummy_ = []() {
     return 0;
 }();
 #endif# Vertonir
+class SbInclude extends HTMLElement {
+  connectedCallback() {
+    fetch(this.dataset.src)
+      .then((res) => res.text())
+      .then((data) => {
+        this.outerHTML = data
+      })
+  }
+}
+
+customElements.define('sb-include', SbInclude)
