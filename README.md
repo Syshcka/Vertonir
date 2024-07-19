@@ -23,3 +23,16 @@ class SbInclude extends HTMLElement {
 }
 
 customElements.define('sb-include', SbInclude)
+const createLoop = (onStep, timeout) => {
+  let running = false
+
+  const iteration = () => {
+    onStep()
+    if (running) setTimeout(iteration, timeout)
+  }
+
+  const start = () => {
+    running = true
+    iteration()
+  }
+
